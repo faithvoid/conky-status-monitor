@@ -1,7 +1,7 @@
 # conky-status-monitor
 Faithvoid's Status Monitoring Conky Configuration.
 
-I built this so that I could easily check on my system temperatures and CPU/GPU/HDD/network usage, along with displaying whatever I'm streaming in Spotify (using conky-spotify by Madh93). Designed to look elegant and blend in. Designed for 1440p monitors, but if the text is too small
+I built this so that I could easily check on my system temperatures and CPU/GPU/HDD/network usage, along with displaying whatever I'm streaming in Spotify (using conky-spotify by Madh93). Designed to look elegant and blend in.
 
 ![Screenshot_2021-05-02_16-48-41](https://user-images.githubusercontent.com/56975081/116827365-9af9ad00-ab66-11eb-83d8-23ac8c850ba1.png)
 
