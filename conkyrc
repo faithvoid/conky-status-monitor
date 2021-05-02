@@ -47,7 +47,7 @@ OS:$alignr ${execi 86400 lsb_release -si}
 Kernel:$alignr${kernel}
 Uptime:$alignr$uptime
 
-$alignc C P U  -  M E M - H D D
+$alignc C P U  -  M E M
 ${hr}
 CPU: $alignr ${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c 1-26}
 Usage:$alignr${cpu cpu0}%
@@ -62,6 +62,8 @@ Temperature:$alignr${nvidia temp}°C
 RAM:$alignr$mem/$memmax
 Swap usage:$alignr$swap/$swapmax
 
+$alignc H D D
+${hr}
 $alignc M A I N
 File System: $alignr${fs_type /}
 Disk usage:$alignr${fs_used /}/${fs_size /}
