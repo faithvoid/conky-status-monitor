@@ -1,0 +1,94 @@
+conky.config = {
+	background = true,
+	use_xft = true,
+	--[[The line below may need to be modified depending on your font preference.]]
+	font = 'Inter:Regular:size=10',
+	xftalpha = 1,
+	update_interval = 1.0,
+	total_run_times = 0,
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+	own_window = true,
+	own_window_transparent = true,
+	own_window_type = 'desktop',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	double_buffer = true,
+	minimum_width = 200, minimum_height = 200,
+	maximum_width = 240,
+	draw_shades = true,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+	default_color = 'white',
+	default_shade_color = '#000000',
+	default_outline_color = '#000000',
+	alignment = 'top_right',
+	gap_x = 25,
+	gap_y = 57,
+	no_buffers = true,
+	uppercase = false,
+	cpu_avg_samples = 2,
+	override_utf8_locale = true,
+
+	own_window_colour = '#000000',
+};
+
+--[[Notes for the below fields:
+1) You may need to change wlp3s0 to your respective wireless or ethernet card.
+2) The GPU section is designed for Nvidia cards only. You'll need to rework that section with AMD/Intel specific commands to get it to work with those cards.
+Apart from these issues, this script is pretty universal and should Just Work.]]
+
+conky.text = [[
+$alignc S Y S T E M    I N F O
+${hr}
+User:$alignr${exec whoami}
+Host:$alignr$nodename
+OS:$alignr ${execi 86400 lsb_release -si}
+Kernel:$alignr${kernel}
+Uptime:$alignr$uptime
+
+$alignc C P U  -  M E M - H D D
+${hr}
+CPU: $alignr ${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c 1-26}
+Usage:$alignr${cpu cpu0}%
+Temperature:$alignr${acpitemp}°C
+Governor: $alignr${execi 5 cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor}
+Frequency:$alignr$freq MHz
+
+GPU: $alignr Nvidia GTX 1050 Ti
+Usage:$alignr${nvidia gpuutil}%
+Temperature:$alignr${nvidia temp}°C
+
+RAM:$alignr$mem/$memmax
+Swap usage:$alignr$swap/$swapmax
+
+$alignc M A I N
+File System: $alignr${fs_type /}
+Disk usage:$alignr${fs_used /}/${fs_size /}
+
+$alignc E X T 4
+File System: $alignr${fs_type /mnt/ext4}
+Disk usage:$alignr${fs_used /}/${fs_size /mnt/ext4}
+
+$alignc N T F S
+File System: $alignr${fs_type /mnt/ntfs}
+Disk usage:$alignr${fs_used /}/${fs_size /mnt/ntfs}
+
+$alignc N E T W O R K
+${hr}
+IP Address:$alignr${addr wlp0s26u1u2}
+SSID:$alignr${wireless_essid wlp0s26u1u2}
+Signal Strength:$alignr${wireless_link_qual wlp0s26u1u2}%
+Up Speed:$alignr${upspeedf wlp0s26u1u2}KB/s
+Total Upload:$alignr${totalup wlp0s26u1u2}
+Down Speed:$alignr${downspeedf wlp0s26u1u2}KB/s
+Total Download:$alignr${totaldown wlp0s26u1u2}
+
+$alignc M U S I C
+${hr}
+$alignc Artist: ${exec ~/.conky/conky-spotify/scripts/artist.sh}
+
+$alignc Song: ${exec ~/.conky/conky-spotify/scripts/title.sh}
+
+$alignc Album: ${exec ~/.conky/conky-spotify/scripts/album.sh}${voffset 10}
+]];
