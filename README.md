@@ -10,7 +10,7 @@ I built this so that I could easily check on my system temperatures and CPU/GPU/
 - Extract to home folder and rename conkyrc and conky to .conkyrc and .conky (or modify the script or conky's launch options to suit your preferences, I just do this because I have a hidden folder I use for all of my conky scripts!)
 
 **ISSUES:**
-- This was originally desigend for a 1080p display, then a 1440p display. You may have to modify the text size or some of the contents of the script if the text is the wrong size on your display.
+- This was originally designed for a 1080p display, then a 1440p display. You may have to modify the text size or some of the contents of the script if the text is the wrong size on your display.
 
 - Due to variances in network interface names, you'll have to use a command like iwconfig to find your network interface ID and replace all instances of wlp0s26u1u2 with your network ID. You can theoretically monitor multiple network interfaces with this, just duplicate the code and change the interface names accordingly.
 
