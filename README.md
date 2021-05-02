@@ -20,3 +20,4 @@ I built this so that I could easily check on my system temperatures and CPU/GPU/
 **TODO:**
 - Remove the (R) and (TM) logos from the CPU script.
 - Make the drives section look nicer?
+- Make a non-Spotify version. 
