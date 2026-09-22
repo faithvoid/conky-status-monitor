@@ -64,17 +64,8 @@ Swap usage:$alignr$swap/$swapmax
 
 $alignc H D D
 ${hr}
-$alignc M A I N
 File System: $alignr${fs_type /}
-Disk usage:$alignr${fs_used /}/${fs_size /}
-
-$alignc E X T 4
-File System: $alignr${fs_type /mnt/ext4}
-Disk usage:$alignr${fs_used /}/${fs_size /mnt/ext4}
-
-$alignc N T F S
-File System: $alignr${fs_type /mnt/ntfs}
-Disk usage:$alignr${fs_used /}/${fs_size /mnt/ntfs}
+Disk Usage:$alignr${fs_used /}/${fs_size /}
 
 $alignc N E T W O R K
 ${hr}
@@ -86,11 +77,21 @@ Total Upload:$alignr${totalup wlp0s26u1u2}
 Down Speed:$alignr${downspeedf wlp0s26u1u2}KB/s
 Total Download:$alignr${totaldown wlp0s26u1u2}
 
-$alignc M U S I C
+$alignc N O W   P L A Y I N G
 ${hr}
-$alignc Artist: ${exec ~/.conky/conky-spotify/scripts/artist.sh}
+$alignc${execi 2 playerctl metadata title 2>/dev/null | sed -E 's/(.{25}).+/\1.../'}
+$alignc${execi 2 playerctl metadata artist 2>/dev/null | sed -E 's/(.{25}).+/\1.../'}
+$alignc${execi 2 playerctl metadata album 2>/dev/null | sed -E 's/(.{25}).+/\1.../'}
+$alignc${execi 1 playerctl position --format "{{ duration(position) }}"} / ${execi 2 playerctl metadata --format "{{ duration(mpris:length) }}"}
 
-$alignc Song: ${exec ~/.conky/conky-spotify/scripts/title.sh}
+# Execute script to fetch album cover
+${execi 4 ~/.conky/cover.sh}
 
-$alignc Album: ${exec ~/.conky/conky-spotify/scripts/album.sh}${voffset 10}
+# Reserve vertical space for the image so Conky expands correctly
+${voffset 10}
+${image /tmp/conky_cover.jpg -p 37,770 -s 128x128 -n}
+${voffset 128}
+
+$endif
+
 ]];
